@@ -1,0 +1,9 @@
+#Navbar {
+    width: 100vw;
+    height: 56px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: aqua;
+    align-items: center;
+}
