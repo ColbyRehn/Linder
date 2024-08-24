@@ -1,11 +1,14 @@
 import json
 import os
-def create_boss(name, age, distance, id):
+
+
+def create_boss(name, age, distance, bio,id):
     boss = {
         "name": name,
         "age": age,
         "distance": distance,
         "id": id,
+        "bio": bio,
         "number": 0
     }
     # save to json file
@@ -16,5 +19,13 @@ def create_boss(name, age, distance, id):
         json.dump(boss, f)
 
 
-create_boss("John", 30, 10, 1)
+if __name__ == '__main__':
+    # get args 
+    name = input("Enter the name of the boss: ")
+    age = input("Enter the age of the boss: ")
+    distance = input("Enter the distance of the boss: ")
+    bio = input("Enter the bio of the boss: ")
+    id = input("Enter the id of the boss: ")
+    create_boss(name, age, distance, bio,id)
+    print("Boss created successfully")
 
