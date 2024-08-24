@@ -1,6 +1,58 @@
 #Photocard {
-    height: 620px;
-    width: 400px;
-    border-radius: 10px;
-    background-color: black;
+  margin-top: 24px;
+  height: 580px;
+  width: 400px;
+  background-color: white;
+  display: flex;
+  flex-direction: column-reverse;
+  user-select: none;
+}
+
+.Image {
+  background-position: center;
+  background-size: cover;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+}
+
+#Info {
+  height: 150px;
+  width: auto;
+  z-index: 100;
+  display: absolute;
+  color: white;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  padding: 24px;
+}
+
+#NameInfo {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+#Content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#Name {
+  font-size: 36px;
+  font-weight: bold;
+  display: inline;
+  margin-right: 11px;
+}
+
+#Age {
+  font-size: 24px;
+  line-height: normal;
+  display: inline;
+}
+
+.text {
+  font-size: 16px;
 }
