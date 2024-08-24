@@ -4,7 +4,7 @@ import Header from '../../Component/Header';
 function Leaderboard() {
   return (
     <section >
-      <Header />
+      <Header red="leaderboard"/>
 
     </section>
   );

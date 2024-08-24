@@ -4,7 +4,7 @@ import Header from '../../Component/Header';
 function Profile() {
   return (
     <section>
-      <Header />
+      <Header red="profile"/>
 
     </section>
   );
