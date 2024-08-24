@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo } from "react";
+import React, { useState, useRef, useMemo, useEffect, useCallback } from "react";
 import Header from "../../Component/Header";
 import Employer from "../../Component/Employer";
 import "./Swipe.css";
@@ -38,6 +38,22 @@ function Swipe() {
   const [lastDirection, setLastDirection] = useState("");
   const currentIndexRef = useRef(currentIndex);
 
+  const handleUserKeyPress = (event: any) => {
+    const { key, keyCode } = event;
+    if(keyCode === 37){
+      swipe('left');
+    } else if (keyCode === 39) {
+      swipe('right');
+    }
+};
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleUserKeyPress);
+    return () => {
+        window.removeEventListener("keydown", handleUserKeyPress);
+    };
+}, [handleUserKeyPress]);
+
   const childRefs: React.RefObject<any>[] = useMemo(
     () =>
       Array(db.length)
@@ -57,6 +73,7 @@ function Swipe() {
 
   // set last direction and decrease current index
   const swiped = (direction: string, nameToDelete: string, index: number) => {
+    console.log(direction);
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
   };
@@ -93,7 +110,9 @@ function Swipe() {
   return (
     <section id="SwipeInterface">
       <Header />
-      <div style={{height: 620,
+      <button onClick={() => swipe('left')}>Swipe left!</button>
+      <button onClick={() => swipe('right')}>Swipe right!</button>
+      <div style={{height: 580,
   width: 400}}>
         {db.map((character, index) => (
           <TinderCard
@@ -102,6 +121,7 @@ function Swipe() {
             key={index}
             onSwipe={(dir) => swiped(dir, character.name, index)}
             onCardLeftScreen={() => outOfFrame(character.name, index)}
+            preventSwipe={['up', 'down']}
           >
             <Employer
               key={index}
