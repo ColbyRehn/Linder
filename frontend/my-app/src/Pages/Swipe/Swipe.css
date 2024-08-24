@@ -1,10 +1,46 @@
 #SwipeInterface {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
 }
 
 .swipe {
-    position: absolute;
+  position: absolute;
+}
+
+button {
+  background-color: transparent;
+  border-width: 0;
+}
+
+button:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+#swipeContent {
+  width: 800px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+p {
+  margin-top: 8px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+#swipe {
+  background: -webkit-linear-gradient(rgb(250, 45, 66), rgb(245, 104, 104));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#match {
+  background: linear-gradient(to right, rgb(34, 126, 34), rgb(99, 162, 17));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

@@ -4,7 +4,8 @@ import Employer from "../../Component/Employer";
 import "./Swipe.css";
 import sample from "../../Assets/sample.jpg";
 import TinderCard from "react-tinder-card";
-import { relative } from "path";
+import left from "../../Assets/left.png";
+import right from "../../Assets/right.png";
 
 const db = [
   {
@@ -109,9 +110,9 @@ function Swipe() {
 
   return (
     <section id="SwipeInterface">
-      <Header />
-      <button onClick={() => swipe('left')}>Swipe left!</button>
-      <button onClick={() => swipe('right')}>Swipe right!</button>
+      <Header red="" />
+      <div id="swipeContent">
+      <button onClick={() => swipe('left')}><img src={left}/><p id='swipe'>Pass</p></button>
       <div style={{height: 580,
   width: 400}}>
         {db.map((character, index) => (
@@ -134,6 +135,8 @@ function Swipe() {
             />
           </TinderCard>
         ))}
+      </div>
+      <button onClick={() => swipe('right')}><img src={right}/><p id='match'>Match</p></button>
       </div>
     </section>
   );

@@ -1,9 +1,19 @@
 #Navbar {
     width: 100vw;
-    height: 56px;
+    height: 80px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: aqua;
+    background-color: white;
     align-items: center;
+}
+
+.button {
+    border-width: 0;
+    background-color: transparent;
+}
+
+.button:hover {
+    opacity: 0.5;
+    cursor: pointer;
 }
