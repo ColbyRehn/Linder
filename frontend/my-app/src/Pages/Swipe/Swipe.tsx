@@ -1,4 +1,5 @@
-import React, { useState, useRef, useMemo, useEffect, useCallback } from "react";
+import React, { useState, useRef, useMemo, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Header from "../../Component/Header";
 import Employer from "../../Component/Employer";
 import "./Swipe.css";
@@ -35,6 +36,35 @@ const db = [
 ];
 
 function Swipe() {
+
+  // const db = [
+  //   {
+  //     image: sample,
+  //     name: "0",
+  //     age: "60",
+  //     location: "Sydney",
+  //     distance: "50",
+  //     bio: "Hello",
+  //   },
+  //   {
+  //     image: sample,
+  //     name: "1",
+  //     age: "60",
+  //     location: "Sydney",
+  //     distance: "50",
+  //     bio: "Hello",
+  //   },
+  //   {
+  //     image: sample,
+  //     name: "2",
+  //     age: "60",
+  //     location: "Sydney",
+  //     distance: "50",
+  //     bio: "Hello",
+  //   },
+  // ];
+  const location = useLocation();
+  const { db, bio } = location.state || {}; // Destructure the passed props
   const [currentIndex, setCurrentIndex] = useState(db.length - 1);
   const [lastDirection, setLastDirection] = useState("");
   const currentIndexRef = useRef(currentIndex);
@@ -115,7 +145,7 @@ function Swipe() {
       <button onClick={() => swipe('left')}><img src={left}/><p id='swipe'>Pass</p></button>
       <div style={{height: 580,
   width: 400}}>
-        {db.map((character, index) => (
+        {db.map((character:any, index:any) => (
           <TinderCard
             ref={childRefs[index]}
             className="swipe"

@@ -12,7 +12,7 @@ type prop = {
 
 const Employer = ({image, fullName, age, location, distance, bio}: prop) => {
   return (
-    <div id="Photocard" style={{backgroundImage: `url(${image})`}} className="Image">
+    <div id="Photocard" style={{backgroundImage: "url('" + image.replace(/(\r\n|\n|\r)/gm, "") + "')"}} className="Image">
       <div id="Info">
         <div id="NameInfo">
           <p id="Name">{fullName}</p>
