@@ -9,12 +9,12 @@
   position: absolute;
 }
 
-button {
+#SwipeInterface > button {
   background-color: transparent;
   border-width: 0;
 }
 
-button:hover {
+#SwipeInterface > button:hover {
   opacity: 0.5;
   cursor: pointer;
 }
@@ -27,7 +27,7 @@ button:hover {
   align-items: center;
 }
 
-p {
+#SwipeInterface > p {
   margin-top: 8px;
   font-weight: bold;
   font-size: 24px;
