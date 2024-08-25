@@ -58,7 +58,7 @@ function Photo() {
                 setIsPhotoTaken(false);
             }}>Re-take photo</button>
         </div>
-        <button className="photonext" onClick={() => navigate("/swipe")}>CONTINUE</button>
+        <button className="photonext" onClick={() => navigate("/preview")}>CONTINUE</button>
         </>
       ) : (
         <>
