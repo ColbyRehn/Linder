@@ -1,5 +1,5 @@
 import React, { useState, useRef, useMemo, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../Component/Header";
 import Employer from "../../Component/Employer";
 import "./Swipe.css";
@@ -8,35 +8,10 @@ import TinderCard from "react-tinder-card";
 import left from "../../Assets/left.png";
 import right from "../../Assets/right.png";
 
-const db = [
-  {
-    image: sample,
-    name: "0",
-    age: "60",
-    location: "Sydney",
-    distance: "50",
-    bio: "Hello",
-  },
-  {
-    image: sample,
-    name: "1",
-    age: "60",
-    location: "Sydney",
-    distance: "50",
-    bio: "Hello",
-  },
-  {
-    image: sample,
-    name: "2",
-    age: "60",
-    location: "Sydney",
-    distance: "50",
-    bio: "Hello",
-  },
-];
+
 
 function Swipe() {
-
+  const navigate = useNavigate();
   // const db = [
   //   {
   //     image: sample,
@@ -66,8 +41,9 @@ function Swipe() {
   // const location = useLocation();
   //const { db, bio } = location.state || {}; // Destructure the passed props
 
-  const [db, setDb] = useState([]);
+  const [db, setDb] = useState<any[]>([]);
   const [firstLoad, setFirstLoad] = useState(false);
+  // get bio from local storage
 
   const [currentIndex, setCurrentIndex] = useState(db.length - 1);
   const [lastDirection, setLastDirection] = useState("");
@@ -113,7 +89,7 @@ function Swipe() {
       Array(db.length)
         .fill(0)
         .map((i) => React.createRef()),
-    []
+    [db]
   );
 
   const updateCurrentIndex = (val: number) => {
@@ -127,9 +103,40 @@ function Swipe() {
 
   // set last direction and decrease current index
   const swiped = (direction: string, nameToDelete: string, index: number) => {
-    console.log(direction);
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
+
+
+    const request_swipe = async (direction:string) => {
+      const response = await fetch("http://localhost:3456/swipe_boss", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          boss_id: db[index].id,
+          direction: direction,
+        }),
+      });
+      if (!response.ok) {
+        console.error("Failed to send swipe");
+      } else {
+        const x = await response.json();
+        if (x.success) {
+          navigate("/match");
+        }
+        else {
+          if (index === 0) {
+            navigate("/nomatch");
+          }
+      }
+      }
+    }
+
+    // logic for swipe
+    request_swipe(direction)
+
+    
   };
 
   const outOfFrame = (name: string, idx: number) => {

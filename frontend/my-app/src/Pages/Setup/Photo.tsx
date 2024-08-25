@@ -11,8 +11,12 @@ function Photo() {
   const [isPhotoTaken, setIsPhotoTaken] = useState(false);
   const [submitClicked, setSubmitClicked] = useState(false);
   const onSubmit = () => {
+    if (submitClicked) {
+      return;
+    }
     // Send photo to backend to generate bio
     setSubmitClicked(true);
+    console.log("Sending photo to backend");
     const send = async () => {
       const response = await fetch("http://127.0.0.1:3456/analyze", {
         method: "POST",
@@ -26,19 +30,21 @@ function Photo() {
         }),
       });
       if (response.ok) {
-        
-        const bio = await response.json();
-        navigate("/swipe", { state: {bio:bio.bio} });
-        // fetch the db
-        const response2 = await fetch("http://localhost:3456/bosses")
-          if (response2.ok) {
-            const db = await response2.json();
-            
-          } else {
-            console.error("Failed to fetch data");
-          }
+        const rtv = await response.json();
+        // setup bio in local storage
+        localStorage.setItem("bio", rtv.bio);
+        localStorage.setItem("name", name);
+        localStorage.setItem("img", photo);
+        localStorage.setItem("role", role);
+        localStorage.setItem("emotion", rtv.emotion);
+
+        // Navigate to next page only when bio is resolved
+
+        navigate("/swipe");
+
         
       } else {
+        setSubmitClicked(false);
         console.error("Failed to send photo");
       }
     }
@@ -58,7 +64,7 @@ function Photo() {
                 setIsPhotoTaken(false);
             }}>Re-take photo</button>
         </div>
-        <button className="photonext" onClick={() => navigate("/swipe")}>CONTINUE</button>
+        <button className="photonext" onClick={onSubmit}>{!submitClicked?"CONTINUE":"..."}</button>
         </>
       ) : (
         <>
