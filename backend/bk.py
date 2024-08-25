@@ -73,6 +73,8 @@ def get_boss_all():
             "location": boss.location,
             "image": f"data:image/jpeg;base64,{encoded_image}"
         })
+        # shuffle rtv
+        np.random.shuffle(rtv)
     return jsonify(rtv)
 @app.route('/analyze', methods=['POST'])
 def analyze():
