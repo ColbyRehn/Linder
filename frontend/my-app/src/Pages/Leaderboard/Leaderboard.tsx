@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import Header from "../../Component/Header";
 import sample from "../../Assets/sample.jpg";
 import "./Leaderboard.css";
+import fireload from '../../Assets/tinderload.gif'
 
 const db = [{
   image: sample,
@@ -80,26 +81,31 @@ function Leaderboard() {
       </div>
       <div id="restleaderboard">
         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-          <p>Name</p>
-          <p>Rank</p>
+          
+          <p>Rank & Name</p>
+
           <p>Matches</p>
         </div>
         {db.map((element:{image:string, name: string, number:number}, index) => (
           <div key={index} style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
             <div className="profile" style={{flexDirection: 'row'}}>
+              <p>
+                {index + 1}.
+              </p>
               <img src={element.image} alt= "" />
               <p>{element.name}</p>
             </div>
-            <p>
-              {index + 1}
-            </p>
+            
             <p>{element.number}</p>
           </div>
           ))}
       </div>
       </>
       ) : (
-        <h1>Loading...</h1>
+        <>
+        <img src={fireload} style={{height: 300, width: 300, objectFit:"contain"}} />
+        <p id="leaderboardloading" >Loading popularity leaderboard...</p>
+        </>
       )}
 
     </section>

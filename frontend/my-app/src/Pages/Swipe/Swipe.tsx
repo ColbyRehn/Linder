@@ -7,7 +7,7 @@ import sample from "../../Assets/sample.jpg";
 import TinderCard from "react-tinder-card";
 import left from "../../Assets/left.png";
 import right from "../../Assets/right.png";
-
+import fireload from '../../Assets/tinderload.gif'
 
 
 function Swipe() {
@@ -124,6 +124,8 @@ function Swipe() {
       } else {
         const x = await response.json();
         if (x.success) {
+          localStorage.setItem("boss_name", db[index].name);
+          localStorage.setItem("boss_image", db[index].image);
           navigate("/match");
         }
         else {
@@ -201,7 +203,10 @@ function Swipe() {
       <button onClick={() => swipe('right')}><img src={right}/><p id='match'>Match</p></button>
       </div>
       ) : (
-        <h1>Loading...</h1>
+        <>
+        <img src={fireload} style={{height: 300, width: 300, objectFit:"contain"}} />
+        <p id="swipeloading" >Loading your employers...</p>
+        </>
       )}
     </section>
   );

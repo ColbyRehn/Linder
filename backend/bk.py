@@ -194,7 +194,7 @@ def swipe_boss():
         if np.random.rand() > 0.6:
             return jsonify(success=False), 200
     # 50% 50% chance to success. Always 200, but json will return a boolean
-    if np.random.rand() > 0.85:
+    if np.random.rand() > 0.60:
         return jsonify(success=True), 200
     else:
         return jsonify(success=False), 200
@@ -229,9 +229,9 @@ if __name__ == '__main__':
             continue
         
         with open(f"resource/{boss_id}/profile.json", "r") as f:
+            print(f"loading boss {boss_id}")
             data = json.load(f)
-
-            boss_data.append(Boss(name=data["name"], age=data["age"], distance=data["distance"], id=boss_id, bio=data["bio"], emotion=data.get("emotion", "neutral"), location=data.get("location"), number=data.get("number", 0)))
+            boss_data.append(Boss(name=data["name"], age=data["age"], distance=data["distance"], id=boss_id, bio=data["bio"], emotion=data.get("emotion", "neutral"), location=data.get("Location", "unknown"), number=data.get("number", 0)))
 
     app.run(debug=True, port = 3456)
 
