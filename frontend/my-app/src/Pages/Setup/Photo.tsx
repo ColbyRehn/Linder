@@ -39,8 +39,7 @@ function Photo() {
         localStorage.setItem("emotion", rtv.emotion);
 
         // Navigate to next page only when bio is resolved
-
-        navigate("/swipe");
+        navigate("/preview")
 
         
       } else {

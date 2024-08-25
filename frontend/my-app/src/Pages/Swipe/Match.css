@@ -1,0 +1,30 @@
+#MatchInterface {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+#MatchInterface p {
+    margin: 0px;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#nextMatch {
+    width: 315px;
+    height: 50px;
+    background: linear-gradient(90deg, rgba(234,64,128,1) 0%, rgba(238,128,95,1) 100%);
+    border-width: 0;
+    border-radius: 68px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#nextMatch:hover {
+ opacity: 0.5;
+ cursor: pointer;
+}
