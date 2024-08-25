@@ -10,18 +10,26 @@ type prop = {
   bio: string;
 };
 
-const Employer = ({image, fullName, age, location, distance, bio}: prop) => {
+const Employer = ({ image, fullName, age, location, distance, bio }: prop) => {
   return (
-    <div id="Photocard" style={{backgroundImage: "url('" + image.replace(/(\r\n|\n|\r)/gm, "") + "')"}} className="Image">
+    <div
+      id="Photocard"
+      style={{
+        backgroundImage: "url('" + image.replace(/(\r\n|\n|\r)/gm, "") + "')",
+      }}
+      className="Image"
+    >
       <div id="Info">
-        <div id="NameInfo">
-          <p id="Name">{fullName}</p>
-          <p id="Age">{age}</p>
-        </div>
-        <div id="Content">
-          <p className="text">Lives in {location}</p>
-          <p className="text">{distance}km from you</p>
-          <p className="text">{bio}</p>
+        <div style={{display: 'flex', flexDirection: 'column', justifyContent:'center'}}>
+          <div id="NameInfo">
+            <p id="Name">{fullName}</p>
+            <p id="Age">{age} years old</p>
+          </div>
+          <div id="Content">
+            <p className="text">Lives in {location}</p>
+            <p className="text">{distance}km from you</p>
+            <p id="bio">{bio}</p>
+          </div>
         </div>
       </div>
     </div>
