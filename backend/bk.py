@@ -97,13 +97,14 @@ def analyze():
         age = analysis[0]["age"]
         emotion = analysis[0]["dominant_emotion"]
         gender = analysis[0]['dominant_gender']
-        prompt = f"My name is {name}. I am {age} years old. My emotion is {emotion}. My job is {role}. I am {race} {gender}. make up me a short around 20 words funny bio. Just give me the bio without any other sentences."
+        prompt = f"My name is {name}. I am {age} years old. My emotion is {emotion}. My job is {role}. I am {race} {gender}. make up me a short job bio blurb with maximum 50 words, related to the job. Make it funny and interesting, remarking on workplace-relevant characteristics. Only give me the bios without anything else. Do not include the sentence 'Here is your short job bio blurb'. Start with the acutal bio in one paragraph."
         x = llama3(prompt) 
         json_data = {
             "bio": x,
             "emotion": emotion
         }
-        return jsonify(json_data)
+        rtv = jsonify(json_data)
+        return rtv
     except Exception as e:
         print(e)
         return jsonify(error=str(e)), 500
@@ -172,6 +173,7 @@ def swipe_boss():
         return jsonify(error="No boss_id provided"), 400
     boss_id = data['boss_id']
     direction = data["direction"]
+    emotion = data["emotion"]
     if direction == "left":
         return jsonify(success=False), 200
     
@@ -184,8 +186,13 @@ def swipe_boss():
                 data["number"] = boss.number
             with open(f"resource/{boss_id}/profile.json", "w") as f:
                 json.dump(data, f)
+
+    # if emotions not alligned, return 40% chance to fail
+    if emotion != boss.emotion:
+        if np.random.rand() > 0.6:
+            return jsonify(success=False), 200
     # 50% 50% chance to success. Always 200, but json will return a boolean
-    if np.random.rand() > 0.5:
+    if np.random.rand() > 0.85:
         return jsonify(success=True), 200
     else:
         return jsonify(success=False), 200
