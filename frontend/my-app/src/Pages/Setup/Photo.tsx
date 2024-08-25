@@ -53,18 +53,20 @@ function Photo() {
         <>
         {/*If photo taken, show preview */}
         <div id="Retake">
-            <img src={photo} />
-            <button onClick={() => {
+            <img src={photo} style={{borderRadius: 36, width: 600}} />
+            <button className="retakephoto" onClick={() => {
                 setIsPhotoTaken(false);
             }}>Re-take photo</button>
         </div>
+        <button className="photonext" onClick={() => navigate("/swipe")}>CONTINUE</button>
         </>
       ) : (
         <>
         {/*Video preview before taking photo*/}
-        <Webcam mirrored>
+        <Webcam mirrored style={{borderRadius: 36, width: 600}}>
           {({ getSnapshot }) => (
             <button
+            className="photonext"
               onClick={() => {
                 // Base 64 encoded image
                 const snapshot = getSnapshot({ quality: 1 });
@@ -81,7 +83,6 @@ function Photo() {
         </Webcam>
         </>
       )}
-      <button onClick={!submitClicked? onSubmit: ()=>{}}>Next</button>
     </section>
   );
 }
