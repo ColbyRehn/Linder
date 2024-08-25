@@ -63,11 +63,33 @@ function Swipe() {
   //     bio: "Hello",
   //   },
   // ];
-  const location = useLocation();
-  const { db, bio } = location.state || {}; // Destructure the passed props
+  // const location = useLocation();
+  //const { db, bio } = location.state || {}; // Destructure the passed props
+
+  const [db, setDb] = useState([]);
+  const [firstLoad, setFirstLoad] = useState(false);
+
   const [currentIndex, setCurrentIndex] = useState(db.length - 1);
   const [lastDirection, setLastDirection] = useState("");
   const currentIndexRef = useRef(currentIndex);
+
+
+
+  // fetch info
+  useEffect(() => {
+    const fetchInfo = async () => {
+      const response = await fetch("http://localhost:3456/bosses");
+      if (response.ok) {
+        const dbinfo = await response.json();
+        setDb(dbinfo);
+        setCurrentIndex(dbinfo.length - 1);
+        setFirstLoad(true);
+      } else {
+        console.error("Failed to fetch data");
+      }
+    };
+    fetchInfo();
+  }, []);
 
   const handleUserKeyPress = (event: any) => {
     const { key, keyCode } = event;
@@ -84,6 +106,7 @@ function Swipe() {
         window.removeEventListener("keydown", handleUserKeyPress);
     };
 }, [handleUserKeyPress]);
+
 
   const childRefs: React.RefObject<any>[] = useMemo(
     () =>
@@ -140,7 +163,8 @@ function Swipe() {
 
   return (
     <section id="SwipeInterface">
-      <Header red="" />
+      <Header red=""/>
+      {firstLoad ? (
       <div id="swipeContent">
       <button onClick={() => swipe('left')}><img src={left}/><p id='swipe'>Pass</p></button>
       <div style={{height: 580,
@@ -168,6 +192,9 @@ function Swipe() {
       </div>
       <button onClick={() => swipe('right')}><img src={right}/><p id='match'>Match</p></button>
       </div>
+      ) : (
+        <h1>Loading...</h1>
+      )}
     </section>
   );
 }

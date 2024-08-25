@@ -26,12 +26,14 @@ function Photo() {
         }),
       });
       if (response.ok) {
+        
         const bio = await response.json();
+        navigate("/swipe", { state: {bio:bio.bio} });
         // fetch the db
         const response2 = await fetch("http://localhost:3456/bosses")
           if (response2.ok) {
             const db = await response2.json();
-            navigate("/swipe", { state: {bio:bio.bio, db:db } });
+            
           } else {
             console.error("Failed to fetch data");
           }
