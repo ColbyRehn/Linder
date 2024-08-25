@@ -114,8 +114,9 @@ function Swipe() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          boss_id: db[index].id,
-          direction: direction,
+          "boss_id": db[index].id,
+          "direction": direction,
+          "emotion": localStorage.getItem("emotion")
         }),
       });
       if (!response.ok) {

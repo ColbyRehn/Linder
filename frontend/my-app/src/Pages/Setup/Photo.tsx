@@ -24,9 +24,9 @@ function Photo() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          image: photo,
-          name: name,
-          role: role,
+          "image": photo,
+          "name": name,
+          "role": role,
         }),
       });
       if (response.ok) {
@@ -63,7 +63,7 @@ function Photo() {
                 setIsPhotoTaken(false);
             }}>Re-take photo</button>
         </div>
-        <button className="photonext" onClick={onSubmit}>{!submitClicked?"CONTINUE":"..."}</button>
+        <button className="photonext" onClick={onSubmit}>{!submitClicked?"CONTINUE":"LOADING..."}</button>
         </>
       ) : (
         <>

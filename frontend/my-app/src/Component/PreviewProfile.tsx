@@ -3,9 +3,13 @@ import './PreviewProfile.css'
 import logoBig from '../Assets/tinkedLogoLarge.png'
 
 function PreviewProfile() {
-  const bio = JSON.parse(localStorage.getItem('bio') || '"Bob is bob"');
-  const name = JSON.parse(localStorage.getItem('name') || '"Bob"');
-  const img = JSON.parse(localStorage.getItem('img') ||  '""');
+  // const bio = JSON.parse(localStorage.getItem('bio') || '"Bob is bob"');
+  // const name = JSON.parse(localStorage.getItem('name') || '"Bob"');
+  // const img = JSON.parse(localStorage.getItem('img') ||  '""');
+
+  const bio = localStorage.getItem('bio') || 'Bob is bob';
+  const name = localStorage.getItem('name') || 'Bob';
+  const img = localStorage.getItem('img') || '';
 
   return (
     <section id="previewprofileinterface">
