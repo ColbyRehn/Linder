@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Photo.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Webcam } from "@webcam/react";
+import fireload from '../../Assets/tinderload.gif'
 
 function Photo() {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ function Photo() {
   const [photo, setPhoto] = useState<string>("");
   const [isPhotoTaken, setIsPhotoTaken] = useState(false);
   const [submitClicked, setSubmitClicked] = useState(false);
+
   const onSubmit = () => {
     if (submitClicked) {
       return;
@@ -53,7 +55,10 @@ function Photo() {
   }
   return (
     <section id="Interface">
-      <h1>Upload profile</h1>
+      {submitClicked ? <>
+      <img src={fireload} style={{height: 300, width: 300, objectFit:"contain"}} />
+      <p id="loading" >Generating your profile...</p>
+      </> : <><h1>Upload profile</h1>
       {isPhotoTaken ? (
         <>
         {/*If photo taken, show preview */}
@@ -87,7 +92,8 @@ function Photo() {
           )}
         </Webcam>
         </>
-      )}
+      )}</>}
+      
     </section>
   );
 }

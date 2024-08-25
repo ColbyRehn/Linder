@@ -57,3 +57,11 @@
   opacity: 0.5;
   cursor: pointer;
 }
+
+#loading {
+  background: -webkit-linear-gradient(rgb(250, 45, 66), rgb(245, 104, 104));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 36px;
+}
