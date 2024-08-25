@@ -1,4 +1,5 @@
-import React, { useState, useRef, useMemo, useEffect, useCallback } from "react";
+import React, { useState, useRef, useMemo, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Header from "../../Component/Header";
 import Employer from "../../Component/Employer";
 import "./Swipe.css";
@@ -35,9 +36,60 @@ const db = [
 ];
 
 function Swipe() {
+
+  // const db = [
+  //   {
+  //     image: sample,
+  //     name: "0",
+  //     age: "60",
+  //     location: "Sydney",
+  //     distance: "50",
+  //     bio: "Hello",
+  //   },
+  //   {
+  //     image: sample,
+  //     name: "1",
+  //     age: "60",
+  //     location: "Sydney",
+  //     distance: "50",
+  //     bio: "Hello",
+  //   },
+  //   {
+  //     image: sample,
+  //     name: "2",
+  //     age: "60",
+  //     location: "Sydney",
+  //     distance: "50",
+  //     bio: "Hello",
+  //   },
+  // ];
+  // const location = useLocation();
+  //const { db, bio } = location.state || {}; // Destructure the passed props
+
+  const [db, setDb] = useState([]);
+  const [firstLoad, setFirstLoad] = useState(false);
+
   const [currentIndex, setCurrentIndex] = useState(db.length - 1);
   const [lastDirection, setLastDirection] = useState("");
   const currentIndexRef = useRef(currentIndex);
+
+
+
+  // fetch info
+  useEffect(() => {
+    const fetchInfo = async () => {
+      const response = await fetch("http://localhost:3456/bosses");
+      if (response.ok) {
+        const dbinfo = await response.json();
+        setDb(dbinfo);
+        setCurrentIndex(dbinfo.length - 1);
+        setFirstLoad(true);
+      } else {
+        console.error("Failed to fetch data");
+      }
+    };
+    fetchInfo();
+  }, []);
 
   const handleUserKeyPress = (event: any) => {
     const { key, keyCode } = event;
@@ -54,6 +106,7 @@ function Swipe() {
         window.removeEventListener("keydown", handleUserKeyPress);
     };
 }, [handleUserKeyPress]);
+
 
   const childRefs: React.RefObject<any>[] = useMemo(
     () =>
@@ -110,12 +163,13 @@ function Swipe() {
 
   return (
     <section id="SwipeInterface">
-      <Header red="" />
+      <Header red=""/>
+      {firstLoad ? (
       <div id="swipeContent">
       <button onClick={() => swipe('left')}><img src={left}/><p id='swipe'>Pass</p></button>
       <div style={{height: 580,
   width: 400}}>
-        {db.map((character, index) => (
+        {db.map((character:any, index:any) => (
           <TinderCard
             ref={childRefs[index]}
             className="swipe"
@@ -138,6 +192,9 @@ function Swipe() {
       </div>
       <button onClick={() => swipe('right')}><img src={right}/><p id='match'>Match</p></button>
       </div>
+      ) : (
+        <h1>Loading...</h1>
+      )}
     </section>
   );
 }
