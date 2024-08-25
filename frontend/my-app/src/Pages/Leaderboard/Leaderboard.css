@@ -1,0 +1,108 @@
+#leaderboardinterface {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+#topleaderboard {
+    width: 348px;
+    height: 258px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+#firstplace {
+    height: 258px;
+    width: 110px;
+}
+
+#secondplace {
+    height: 213px;
+    width: 110px;
+} 
+
+#thirdplace {
+    height: 175px;
+    width: 110px;
+}
+
+.placement {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px
+}
+
+.profile img {
+    height: 56px;
+    width: 56px;
+    border-radius: 200px;
+    object-fit: contain;
+}
+
+.profile p {
+    font-size: 14px;
+    margin: 0px;
+}
+
+#secondpodium {
+    width: 110px;
+    height: 133px;
+    background: #83CDF3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#secondpodium p {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+#firstpodium {
+    width: 110px;
+    height: 170px;
+    background: #F24252;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#firstpodium p {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+#thirdpodium {
+    width: 110px;
+    height: 89px;
+    background: #CACCCE;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#thirdpodium p {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+
+#restleaderboard {
+    width: 400px;
+    margin-top: 56px;
+}
