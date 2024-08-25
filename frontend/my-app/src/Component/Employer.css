@@ -16,7 +16,7 @@
 }
 
 #Info {
-  height: 150px;
+  height: auto;
   width: auto;
   z-index: 100;
   display: absolute;
@@ -30,7 +30,7 @@
 }
 
 #NameInfo {
-    padding-top: 8px;
+    padding-top: 24px;
     padding-bottom: 8px;
 }
 
@@ -41,7 +41,7 @@
 }
 
 #Name {
-  font-size: 36px;
+  font-size: 24px;
   font-weight: bold;
   display: inline;
   margin-right: 11px;
@@ -50,9 +50,16 @@
 #Age {
   font-size: 24px;
   line-height: normal;
-  display: inline;
+  margin: 0px;
 }
 
 .text {
+  margin: 0px;
+  font-size: 16px;
+}
+
+#bio {
+  margin: 0px;
+  margin-top: 8px;
   font-size: 16px;
 }
