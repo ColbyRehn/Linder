@@ -27,7 +27,7 @@ const Employer = ({ image, fullName, age, location, distance, bio }: prop) => {
           </div>
           <div id="Content">
             <p className="text">Lives in {location}</p>
-            <p className="text">{distance}km from you</p>
+            <p className="text">{distance} from you</p>
             <p id="bio">{bio}</p>
           </div>
         </div>
